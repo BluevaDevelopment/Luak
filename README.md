@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-26.7-blue">
+  <img alt="Version" src="https://img.shields.io/badge/version-26.8-blue">
   <img alt="Kotlin Multiplatform" src="https://img.shields.io/badge/Kotlin_Multiplatform-JVM_%7C_JS_%7C_Wasm_%7C_Native-7F52FF?logo=kotlin&logoColor=white">
   <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.4.10-7F52FF?logo=kotlin&logoColor=white">
   <img alt="Gradle" src="https://img.shields.io/badge/Gradle-9.6.1-02303A?logo=gradle&logoColor=white">
@@ -87,7 +87,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.blueva:luak-jvm:26.7")
+    implementation("net.blueva:luak-jvm:26.8")
 }
 ```
 
@@ -104,7 +104,7 @@ dependencies {
 <dependency>
   <groupId>net.blueva</groupId>
   <artifactId>luak-jvm</artifactId>
-  <version>26.7</version>
+  <version>26.8</version>
 </dependency>
 ```
 
@@ -123,7 +123,7 @@ globals.load("print('hello, world')")!!.call()
 
 `LuaPlatform.debugGlobals()` adds the `debug` library. Loading the individual classes in `net.blueva.luak.lib` (`BaseLib`, `PackageLib`, `StringLib`, `TableLib`, `MathLib`, `CoroutineLib`, `OsLib`, `IoLib`, `Bit32Lib`) by hand remains available when you want a smaller footprint.
 
-Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:luak-core:26.7
+Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:luak-core:26.8
 
 | Target | Gradle target function | Source set | Tested on |
 |---|---|---|---|
@@ -148,7 +148,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("net.blueva:luak-core:26.7")
+                implementation("net.blueva:luak-core:26.8")
             }
         }
     }
