@@ -3,7 +3,7 @@ import net.blueva.luak.lib.OneArgFunction
 import javax.script.Compilable
 import javax.script.ScriptEngineManager
 
-/** Uses BlueLuaK through the JSR-223 scripting API. */
+/** Uses Luak through the JSR-223 scripting API. */
 fun main() {
     val engine = ScriptEngineManager().getEngineByName("luaj")
     println(engine.factory.getOutputStatement("\"hello, world\""))

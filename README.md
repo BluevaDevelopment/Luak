@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/media/logo.png" alt="Basalt Luak" width="760">
+  <img src="docs/media/logo.png" alt="Luak" width="760">
 </p>
 
 <p align="center">
@@ -16,11 +16,9 @@
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
 </p>
 
-> **Rebranding in progress.** BlueLuaK is becoming **Basalt Luak** (or simply Luak). The name is moving ahead of everything else: releases still publish to Blueva's Maven repository, the coordinates are still `net.blueva:blueluak-*`, and the packages are still `net.blueva.luak`. The install instructions below are the ones that work today.
-
 ## Overview
 
-Basalt Luak (or simply Luak) is a Kotlin-first implementation of an embeddable Lua runtime, built as a **Kotlin Multiplatform** library. Its shared module currently targets:
+Luak is a Kotlin-first implementation of an embeddable Lua runtime, built as a **Kotlin Multiplatform** library. Its shared module currently targets:
 
 - **JVM 17+**
 - **JavaScript IR**, tested on Node.js
@@ -38,8 +36,6 @@ Luak currently implements **Lua 5.5.1** and provides:
 - A shared `io` library (`io.open`, `io.lines`, `io.tmpfile`, file handles, `os.remove`/`rename`/`tmpname`) on every target, not just the JVM.
 - Shared tests for the runtime, compiler, and libraries across KMP targets.
 - JVM integrations for processes, Java reflection, script engines, and `luajava`.
-
-You can find more information on our website: [luaklang.org](https://luaklang.org)
 
 ## Multiplatform Architecture
 
@@ -78,10 +74,10 @@ Two artifacts are available. Pick one:
 
 | Artifact | Contains | Use it when |
 |---|---|---|
-| `blueluak-jvm` | The multiplatform core (as a compile dependency) plus `JvmPlatform.standardGlobals()`, `luajava`, `io.popen`/`os.execute`, the `luajc` JIT compiler, CLI tooling, and `javax.script` integration | You want a ready-to-use Lua runtime, the common case |
-| `blueluak-core-jvm` | Just the shared runtime, compiler, and standard libraries on the JVM target, including `LuaPlatform.standardGlobals()`, but without `luajava`, `io.popen`, `os.execute`, or the JIT | You don't need the JVM-only integrations, or want the smallest possible footprint |
+| `luak-jvm` | The multiplatform core (as a compile dependency) plus `JvmPlatform.standardGlobals()`, `luajava`, `io.popen`/`os.execute`, the `luajc` JIT compiler, CLI tooling, and `javax.script` integration | You want a ready-to-use Lua runtime, the common case |
+| `luak-core-jvm` | Just the shared runtime, compiler, and standard libraries on the JVM target, including `LuaPlatform.standardGlobals()`, but without `luajava`, `io.popen`, `os.execute`, or the JIT | You don't need the JVM-only integrations, or want the smallest possible footprint |
 
-`blueluak-jvm` pulls in `blueluak-core-jvm` transitively, so depending on it alone is enough for most projects.
+`luak-jvm` pulls in `luak-core-jvm` transitively, so depending on it alone is enough for most projects.
 
 **Gradle (Kotlin DSL)**
 
@@ -91,7 +87,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.blueva:blueluak-jvm:26.7")
+    implementation("net.blueva:luak-jvm:26.7")
 }
 ```
 
@@ -107,14 +103,14 @@ dependencies {
 
 <dependency>
   <groupId>net.blueva</groupId>
-  <artifactId>blueluak-jvm</artifactId>
+  <artifactId>luak-jvm</artifactId>
   <version>26.7</version>
 </dependency>
 ```
 
 ### Other Kotlin Multiplatform targets
 
-`blueluak-core` is only distributed as a Kotlin Multiplatform library: every non-JVM target is a Kotlin `.klib`, consumable from another Kotlin Multiplatform Gradle project. It is not a raw JS/npm package, and not a C-callable Native library.
+`luak-core` is only distributed as a Kotlin Multiplatform library: every non-JVM target is a Kotlin `.klib`, consumable from another Kotlin Multiplatform Gradle project. It is not a raw JS/npm package, and not a C-callable Native library.
 
 `LuaPlatform.standardGlobals()` works on every target, so no target needs a hand-assembled `Globals`:
 
@@ -127,7 +123,7 @@ globals.load("print('hello, world')")!!.call()
 
 `LuaPlatform.debugGlobals()` adds the `debug` library. Loading the individual classes in `net.blueva.luak.lib` (`BaseLib`, `PackageLib`, `StringLib`, `TableLib`, `MathLib`, `CoroutineLib`, `OsLib`, `IoLib`, `Bit32Lib`) by hand remains available when you want a smaller footprint.
 
-Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:blueluak-core:26.7
+Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:luak-core:26.7
 
 | Target | Gradle target function | Source set | Tested on |
 |---|---|---|---|
@@ -152,7 +148,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("net.blueva:blueluak-core:26.7")
+                implementation("net.blueva:luak-core:26.7")
             }
         }
     }
@@ -267,4 +263,4 @@ Where a host grants no filesystem at all, `io.open` returns `nil` and a message 
 
 ## License
 
-Basalt Luak is distributed under the [MIT License](LICENSE).
+Luak is distributed under the [MIT License](LICENSE).

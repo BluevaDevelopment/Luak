@@ -24,8 +24,8 @@ jit/
 # The above patterns are meant for accidentally generated build/debug
 # output, but they also match the JVM regression suite's vendored Lua
 # fixtures (scripts, expected output, and the upstream test archive).
-# Keep those tracked so :blueluak-jvm:test is reproducible in CI.
-!blueluak-jvm/src/test/resources/**
+# Keep those tracked so :luak-jvm:test is reproducible in CI.
+!luak-jvm/src/test/resources/**
 
 # OS
 .DS_Store

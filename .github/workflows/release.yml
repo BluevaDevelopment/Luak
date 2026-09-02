@@ -48,12 +48,12 @@ jobs:
           # Badge, Gradle dependency coordinates, and the Maven <version> tag.
           sed -i \
             -e "s|version-[^-]*-blue|version-$REVISION-blue|" \
-            -e "s|net.blueva:blueluak-jvm:[^\"]*|net.blueva:blueluak-jvm:$REVISION|" \
-            -e "s|net.blueva:blueluak-core:[^\"]*|net.blueva:blueluak-core:$REVISION|" \
+            -e "s|net.blueva:luak-jvm:[^\"]*|net.blueva:luak-jvm:$REVISION|" \
+            -e "s|net.blueva:luak-core:[^\"]*|net.blueva:luak-core:$REVISION|" \
             -e "s|<version>[^<]*</version>|<version>$REVISION</version>|" \
             README.md
           echo "revision=$REVISION" >> "$GITHUB_OUTPUT"
-          echo "Releasing BlueLuaK $REVISION"
+          echo "Releasing Luak $REVISION"
 
       # Pushes made with GITHUB_TOKEN don't retrigger this workflow, so
       # [skip ci] is just extra insurance.
@@ -73,7 +73,7 @@ jobs:
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "v${{ steps.version.outputs.revision }}" --title "BlueLuaK ${{ steps.version.outputs.revision }}" --generate-notes
+        run: gh release create "v${{ steps.version.outputs.revision }}" --title "Luak ${{ steps.version.outputs.revision }}" --generate-notes
 
   publish:
     name: Publish to repo.blueva.net

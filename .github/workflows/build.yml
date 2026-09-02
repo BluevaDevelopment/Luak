@@ -36,9 +36,9 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Test KMP JVM core
-        run: ./gradlew :blueluak-core:jvmTest --no-daemon --stacktrace
+        run: ./gradlew :luak-core:jvmTest --no-daemon --stacktrace
       - name: Build JVM integrations
-        run: ./gradlew :blueluak-jvm:build --no-daemon --stacktrace
+        run: ./gradlew :luak-jvm:build --no-daemon --stacktrace
 
   web:
     name: ${{ matrix.target }}
@@ -64,7 +64,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Run ${{ matrix.target }} tests
-        run: ./gradlew :blueluak-core:${{ matrix.task }} --no-daemon --stacktrace
+        run: ./gradlew :luak-core:${{ matrix.task }} --no-daemon --stacktrace
 
   native:
     name: Native ${{ matrix.target }}
@@ -96,7 +96,7 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Run ${{ matrix.target }} tests
-        run: ./gradlew :blueluak-core:${{ matrix.task }} --no-daemon --stacktrace
+        run: ./gradlew :luak-core:${{ matrix.task }} --no-daemon --stacktrace
 
   # Linux ARM64 takes two runners rather than one. The Kotlin/Native compiler
   # does not run on a linux-aarch64 host at all - it builds for that target
@@ -118,12 +118,12 @@ jobs:
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v6
       - name: Link the Linux ARM64 tests
-        run: ./gradlew :blueluak-core:linuxArm64TestBinaries --no-daemon --stacktrace
+        run: ./gradlew :luak-core:linuxArm64TestBinaries --no-daemon --stacktrace
       - name: Upload the test executable
         uses: actions/upload-artifact@v7
         with:
           name: linuxArm64-test
-          path: blueluak-core/build/bin/linuxArm64/debugTest/test.kexe
+          path: luak-core/build/bin/linuxArm64/debugTest/test.kexe
           if-no-files-found: error
           retention-days: 1
 
