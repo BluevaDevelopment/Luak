@@ -126,8 +126,19 @@ release. Load it as a plain script and it puts `LuakWeb` on `globalThis`:
 ```
 
 `check` compiles and runs nothing, with exactly the rules of the same Luak version on a server,
-so an editor can underline what the server would refuse. The bundle is about 390 KB minified.
-Serve a copy from your own site rather than hot-linking the repository.
+so an editor can underline what the server would refuse.
+
+`LuakWeb.parse(source, name)` returns the syntax tree as plain objects in
+[luaparse](https://github.com/fstirlitz/luaparse)'s shape (with its `comments`, `locations` and
+`ranges` options on), so tooling written for luaparse reads it, plus what Lua 5.4 and 5.5 added:
+`attributes` on declarations, `GlobalStatement` (with `wildcard` for `global *`), `isGlobal` on
+functions and `name` on a named vararg. String literals carry their decoded `value`. It compiles
+first and throws an `Error` with `line` and `message` for anything `check` would report, so a tree
+only exists for source the runtime accepts. The bundle is about 415 KB minified. Serve a copy from
+your own site rather than hot-linking the repository.
+
+The same reader is in `luak-core` for Kotlin: `net.blueva.luak.syntax.LuaParser.parse(source)`
+gives a `Chunk` of typed nodes, each with its `SourceRange`.
 
 `luak-core` is only distributed as a Kotlin Multiplatform library: every non-JVM target is a Kotlin `.klib`, consumable from another Kotlin Multiplatform Gradle project. It is not a raw JS/npm package, and not a C-callable Native library.
 
