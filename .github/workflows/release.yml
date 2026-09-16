@@ -51,6 +51,7 @@ jobs:
             -e "s|net.blueva:luak-jvm:[^\"]*|net.blueva:luak-jvm:$REVISION|" \
             -e "s|net.blueva:luak-core:[^\"]*|net.blueva:luak-core:$REVISION|" \
             -e "s|<version>[^<]*</version>|<version>$REVISION</version>|" \
+            -e "s|luak-web/[0-9][0-9.]*/luak-web-[0-9][0-9.]*\.js|luak-web/$REVISION/luak-web-$REVISION.js|g" \
             README.md
           echo "revision=$REVISION" >> "$GITHUB_OUTPUT"
           echo "Releasing Luak $REVISION"

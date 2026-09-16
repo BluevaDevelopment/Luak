@@ -66,6 +66,23 @@ jobs:
       - name: Run ${{ matrix.target }} tests
         run: ./gradlew :luak-core:${{ matrix.task }} --no-daemon --stacktrace
 
+  browser:
+    name: Browser bundle
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Set up JDK 17
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v6
+      # Builds luak-web.js and loads it the way a page does.
+      - name: Build and verify luak-web
+        run: ./gradlew :luak-web:check --no-daemon --stacktrace
+
   native:
     name: Native ${{ matrix.target }}
     runs-on: ${{ matrix.os }}

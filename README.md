@@ -110,6 +110,25 @@ dependencies {
 
 ### Other Kotlin Multiplatform targets
 
+### Web pages
+
+`luak-web` is the runtime compiled for a browser: one self-contained script, published with every
+release. Load it as a plain script and it puts `LuakWeb` on `globalThis`:
+
+```html
+<script src="https://repo.blueva.net/releases/net/blueva/luak-web/26.8/luak-web-26.8.js"></script>
+<script>
+  LuakWeb.version;                                // "26.8"
+  LuakWeb.check("local x <const> = 1\nx = 2", "main.lua");
+  // { line: 2, message: "attempt to assign to const variable 'x'", raw: "[string \"main.lua\"]:2: ..." }
+  LuakWeb.check("print('ok')", "main.lua");      // null: it compiles
+</script>
+```
+
+`check` compiles and runs nothing, with exactly the rules of the same Luak version on a server,
+so an editor can underline what the server would refuse. The bundle is about 390 KB minified.
+Serve a copy from your own site rather than hot-linking the repository.
+
 `luak-core` is only distributed as a Kotlin Multiplatform library: every non-JVM target is a Kotlin `.klib`, consumable from another Kotlin Multiplatform Gradle project. It is not a raw JS/npm package, and not a C-callable Native library.
 
 `LuaPlatform.standardGlobals()` works on every target, so no target needs a hand-assembled `Globals`:

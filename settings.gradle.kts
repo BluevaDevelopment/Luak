@@ -11,5 +11,6 @@ rootProject.name = "Luak"
 
 include(
     "luak-core",
-    "luak-jvm"
+    "luak-jvm",
+    "luak-web"
 )
