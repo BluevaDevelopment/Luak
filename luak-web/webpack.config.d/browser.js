@@ -9,3 +9,9 @@ config.plugins.push(new webpack.NormalModuleReplacementPlugin(/^node:/, (resourc
 }));
 config.resolve = config.resolve || {};
 config.resolve.fallback = Object.assign({}, config.resolve.fallback, { fs: false, os: false });
+
+// A plain script that runs as soon as it loads. The Kotlin plugin's UMD
+// wrapper hands the bundle to an AMD loader when a page has one (Monaco's
+// does), and then nothing ever runs it and LuakWeb never appears.
+delete config.output.library;
+delete config.output.libraryTarget;
