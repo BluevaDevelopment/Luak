@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-26.9-blue">
+  <img alt="Version" src="https://img.shields.io/badge/version-26.10-blue">
   <img alt="Kotlin Multiplatform" src="https://img.shields.io/badge/Kotlin_Multiplatform-JVM_%7C_JS_%7C_Wasm_%7C_Native-7F52FF?logo=kotlin&logoColor=white">
   <img alt="Kotlin" src="https://img.shields.io/badge/Kotlin-2.4.10-7F52FF?logo=kotlin&logoColor=white">
   <img alt="Gradle" src="https://img.shields.io/badge/Gradle-9.6.1-02303A?logo=gradle&logoColor=white">
@@ -87,7 +87,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.blueva:luak-jvm:26.9")
+    implementation("net.blueva:luak-jvm:26.10")
 }
 ```
 
@@ -104,7 +104,7 @@ dependencies {
 <dependency>
   <groupId>net.blueva</groupId>
   <artifactId>luak-jvm</artifactId>
-  <version>26.9</version>
+  <version>26.10</version>
 </dependency>
 ```
 
@@ -116,7 +116,7 @@ dependencies {
 release. Load it as a plain script and it puts `LuakWeb` on `globalThis`:
 
 ```html
-<script src="https://repo.blueva.net/releases/net/blueva/luak-web/26.9/luak-web-26.9.js"></script>
+<script src="https://repo.blueva.net/releases/net/blueva/luak-web/26.10/luak-web-26.10.js"></script>
 <script>
   LuakWeb.version;                                // "26.8"
   LuakWeb.check("local x <const> = 1\nx = 2", "main.lua");
@@ -153,7 +153,7 @@ globals.load("print('hello, world')")!!.call()
 
 `LuaPlatform.debugGlobals()` adds the `debug` library. Loading the individual classes in `net.blueva.luak.lib` (`BaseLib`, `PackageLib`, `StringLib`, `TableLib`, `MathLib`, `CoroutineLib`, `OsLib`, `IoLib`, `Bit32Lib`) by hand remains available when you want a smaller footprint.
 
-Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:luak-core:26.9
+Add the `repo.blueva.net/releases` repository shown above at the project level, then depend on the shared `net.blueva:luak-core:26.10
 
 | Target | Gradle target function | Source set | Tested on |
 |---|---|---|---|
@@ -178,7 +178,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation("net.blueva:luak-core:26.9")
+                implementation("net.blueva:luak-core:26.10")
             }
         }
     }
