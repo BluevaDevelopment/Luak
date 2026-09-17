@@ -6,7 +6,7 @@ plugins {
 
 dependencies {
     api(project(":luak-core"))
-    implementation("org.apache.bcel:bcel:6.12.0")
+    implementation("org.apache.bcel:bcel:6.13.0")
 
     testImplementation("junit:junit:4.13.2")
     testImplementation(kotlin("test"))
